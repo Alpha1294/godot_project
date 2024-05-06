@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbx3780xnx8xb"]
+
+[ext_resource type="Script" path="res://sword_collectable.gd" id="1_g87yx"]
+[ext_resource type="Texture2D" uid="uid://bvojituy4yt8j" path="res://assets/inventory_assets.png" id="2_jl2l4"]
+[ext_resource type="Resource" uid="uid://b8t2s0p150y83" path="res://inventory/items/sword_t1.tres" id="2_x3hcp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uvft"]
+atlas = ExtResource("2_jl2l4")
+region = Rect2(0, 0, 16.0774, 16.5465)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ue4nb"]
+radius = 14.0357
+
+[node name="sword_collectable" type="StaticBody2D"]
+script = ExtResource("1_g87yx")
+item = ExtResource("2_x3hcp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3uvft")
+
+[node name="interactable_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+shape = SubResource("CircleShape2D_ue4nb")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]
